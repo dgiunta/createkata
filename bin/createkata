@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby -wKU
+require 'rubygems'
+require File.join(File.dirname(__FILE__), '..', 'lib', 'kata')
+
+args = ARGV
+name = args[0] || 'bowling'
+dir = args[1] || ENV["KATA_DIR"] || "."
+create = Kata::Create.new(name, File.join(dir, name))
+create.run
+system("mate #{create.code_directory}")
