@@ -1,0 +1,52 @@
+h1. createkata - a stupid simple tool for getting a new kata up and running
+
+To try and stay sharp, I'm trying to do a code kata once every few days, with cucumber and rspec.
+
+While setting up the default project file / directory layout isn't all that difficult, it was starting to get tedious. By default project layout, I mean:
+<pre>
+	project/
+	-- bin/
+	-- features/
+		 -- step_definitions/
+		 -- support/
+		 	  - env.rb
+	-- lib/
+	-- spec/
+		 - spec_helper.rb
+</pre>
+
+Also, I like to keep track of the different katas that I run... sometimes I'll try challenging myself and see if I can solve the same problem a different way, or sometimes once I've solved the inherent problem, I'll try to take the code further, imagining what a more developed (ie - actually useful) implementation might look like. As such, I prefer to have my katas stored in a special location, and I like to keep them numbered, like so:
+<pre>
+	~/Code/katas/
+	-- bowling/
+		 -- bowling_kata/
+		 -- bowling_kata_1/
+		 -- bowling_kata_2/
+	-- mastermind/
+		 -- mastermind_kata/
+		 -- mastermind_kata_1/
+		 -- mastermind_kata_2/
+	..
+	..
+</pre>
+
+This code is a little shell script that will manage all of this for you.
+
+h2. Installation
+
+# Download the code.
+# Put it somewhere you won't want to move it from. I like to keep this kind of code in my default <code>~/Code</code> directory... but then again, I wrote it. Point is, put it someplace you don't expect will change very often.
+# From this directory run <code>ruby install.rb</code>. This will install a tiny shell script in <code>/usr/local/bin</code> that points back to the <code>bin/</code> directory of this project (hence why the code probably shouldn't move around too much). If, however, for some reason, you do move the code, no matter, just re-run <code>ruby install.rb</code> and it'll update the installed binary.
+
+h2. Usage
+
+All you really need to do is run <code>createkata</code> and it will generate a <code>bowling/</code> directory with your first <code>bowling_kata/</code> directory inside, in whatever location you're currently in. And, it'll open this new directory in TextMate for you.
+
+If you want to customize the name of the kata you're doing, you can pass that to the <code>createkata</code> command like so: <code>createkata mastermind</code>. That will generate a <code>mastermind/</code> directory, with a <code>mastermind_kata/</code> directory inside. 
+
+If you want your katas to be stored in the same place all the time, add a <code>KATA_DIR</code> environment variable to your shell: <code>export KATA_DIR="~/Code/katas"</code>. Now, no matter where you run <code>createkata</code> from, all the generated directories will be stored in <code>~/Code/katas/</code>.
+
+You can customize the location on the fly, as well by passing the location as a second argument: <code>createkata mastermind ~/Desktop</code>.
+
+You can run the <code>createkata</code> command as many times as you want, with the same arguments, and each subsequent time, it will create a new directory with an auto-incremented number appended on the end.
+
