@@ -1,3 +1,3 @@
 task :default do
-  `spec spec --color --format=specdoc && cucumber features`
+  puts %x{spec spec --color --format=specdoc && cucumber features}
 end
