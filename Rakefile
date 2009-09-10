@@ -1,3 +1,3 @@
 task :default do
-  exit(0)
+  `spec spec --color --format=specdoc && cucumber features`
 end
